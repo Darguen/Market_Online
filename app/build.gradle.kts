@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.panitagames.marketonline"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.panitagames.marketonline"

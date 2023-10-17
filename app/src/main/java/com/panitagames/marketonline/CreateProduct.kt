@@ -3,7 +3,8 @@ package com.panitagames.marketonline
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Product : AppCompatActivity() {
+class CreateProduct : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)

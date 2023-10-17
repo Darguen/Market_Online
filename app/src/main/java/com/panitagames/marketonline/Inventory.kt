@@ -1,31 +1,43 @@
 package com.panitagames.marketonline
 
+import adapters.ProductAdapter
+import adapters.ProductDetails
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import entities.Product
 
 class Inventory : AppCompatActivity() {
-    private lateinit var binding: ActivityInventoryBinding
+    private lateinit var listViewProducts: ListView
+    private lateinit var productsOnStock: MutableList<Product>
+    private lateinit var adapterItems: ProductAdapter
+    private lateinit var adapter : ArrayAdapter<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_inventory)
 
-        binding = ActivityInventoryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        // Initialize UI elements
+        listViewProducts = findViewById(R.id.listViewProducts)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = binding.viewPager
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = binding.tabs
-        tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = binding.fab
+        // Create a sample list of patients (you should replace this with your data source)
+        productsOnStock = mutableListOf(
+            Product("Cafe", "bebida", "tarro 100g", 1, 0),
+            Product("Pan", "comida", "2 hallullas", 2, 0),
+            Product("Arroz", "comida", "bolsa 500g", 3, 0),
+            // Add more patients as needed
+        )
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        // Create an ArrayAdapter to populate the ListView
+//        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, patients.map { it.email })
+        adapter = ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1, productsOnStock)
+
+        listViewProducts.adapter = adapter
+
     }
 }
