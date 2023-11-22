@@ -14,13 +14,14 @@
         android:text="@string/app_name"
         android:textColor="@color/grey"
         android:textSize="24sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageMyBopIt" />
+        app:layout_constraintTop_toBottomOf="@+id/imageMarketOnline" />
 
     <ImageView
-        android:id="@+id/imageMyBopIt"
+        android:id="@+id/imageMarketOnline"
         android:layout_width="233dp"
         android:layout_height="202dp"
         android:layout_marginTop="116dp"
@@ -30,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@drawable/online_market" />
+        app:srcCompat="@drawable/online_market_png" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -44,6 +45,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="692dp" />
+        app:layout_constraintGuide_begin="496dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

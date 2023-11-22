@@ -3,34 +3,39 @@ package com.panitagames.marketonline
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import androidx.appcompat.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
-        val buttonInventory = findViewById<Button>(R.id.buttonInventory)
-        val buttonInterestPlaces = findViewById<Button>(R.id.buttonInterestPlaces)
-        val buttonShoppingCart = findViewById<Button>(R.id.buttonShoppingCart)
-        val buttonProduct = findViewById<Button>(R.id.buttonProduct)
 
-        //button listeners
-        buttonInventory.setOnClickListener {
-            val intentAbout = Intent(this, Inventory::class.java)
-            startActivity(intentAbout)
-        }
-        buttonInterestPlaces.setOnClickListener {
-            val intentAbout = Intent(this, InterestPlaces::class.java)
-            startActivity(intentAbout)
-        }
-        buttonShoppingCart.setOnClickListener {
-            val intentAbout = Intent(this, ShoppingCart::class.java)
-            startActivity(intentAbout)
-        }
-        buttonProduct.setOnClickListener {
-            val intentAbout = Intent(this, ProductList::class.java)
-            startActivity(intentAbout)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.go_inventory -> {
+                val inventory = Intent(this, Inventory::class.java)
+                startActivity(inventory)
+                return true
+            }
+            R.id.go_product_list -> {
+                val productsList = Intent(this, ProductList::class.java)
+                startActivity(productsList)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 }
