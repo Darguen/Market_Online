@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MarketOnline"
         tools:targetApi="31">
         <activity
+            android:name=".DataBase"
+            android:exported="false" />
+        <activity
+            android:name=".ProductDAO"
+            android:exported="false" />
+        <activity
             android:name="adapters.ProductDetails"
             android:exported="false"
             tools:ignore="Instantiatable" />

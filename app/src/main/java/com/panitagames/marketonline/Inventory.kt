@@ -17,6 +17,8 @@ class Inventory : AppCompatActivity() {
     private lateinit var productsOnStock: MutableList<Product>
     private lateinit var adapterItems: ProductAdapter
     private lateinit var adapter : ArrayAdapter<Product>
+    private val listOption: Boolean = true
+    private val detailOption: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,8 @@ class Inventory : AppCompatActivity() {
         adapter = ArrayAdapter<Product>(this, android.R.layout.simple_list_item_1, productsOnStock)
 
         listViewProducts.adapter = adapter
+
+
 
     }
 }
