@@ -1,9 +1,4 @@
-package com.panitagames.marketonline.DAO
-
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+package com.panitagames.marketonline.dao
 
 
 /*@Dao

@@ -1,29 +1,20 @@
 <resources>
     <string name="app_name">Market Online</string>
-    <string name="interest_place">Lugar de interes</string>
-    <string name="button_go_patient_apps">App Patients</string>
-    <string name="button_go_touch_apps">Touch Event App</string>
-    <string name="button_go_sensor_apps">Sensor App</string>
-    <string name="title_activity_inventory">Inventario</string>
-    <string name="title_activity_product">Producto</string>
-    <string name="title_activity_shopping_cart">Carrito de Compras</string>
-    <string name="title_activity_interest_places">Lugares de interes</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
 
-    <string name="card_title_patients">List of patients</string>
-    <string name="card_title_touch">Touch events</string>
-    <string name="card_title_sensor">List of sensors</string>
-    <string name="card_title_practice">Ejemplo XML Activity</string>
-    <string name="card_desc_patients">Activity with ListView and custom adapters. CRUD of patients.</string>
-    <string name="card_desc_touch">Activity with the listener of several touch events.</string>
-    <string name="card_desc_sensor">Activity with the list of the sensors presents in the device.</string>
-    <string name="card_desc_practice">El ejemplo cuenta con un EditText, Button y una lista que almacena lo que guardas</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+
+
+    <!--> Menu-->
+    <string name="inventory">Inventory</string>
+    <string name="product_list">Products List</string>
+
+    <string name="add_product">Add Product</string>
+    <string name="show_product_details">Show Product Details</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="sort_product">Sort Product</string>
+
+    <!--> Delete-->
+    <string name="delete_message">Are you sure you want delete this item?</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_cancel">Cancel</string>
 
 </resources>

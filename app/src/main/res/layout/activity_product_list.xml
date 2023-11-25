@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightgreen"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ProductList">
@@ -12,30 +13,29 @@
 
     <!-- Button to create a new patient -->
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/orange"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/buttonAddProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginBottom="16dp"
-            android:text="Add Product" />
-
-        <Button
-            android:id="@+id/buttonChangeApapter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginBottom="16dp"
-            android:onClick="changeAdapter"
-            android:text="Change Adapter" />
-    </LinearLayout>
+        android:orientation="horizontal" />
 
     <!-- ListView for displaying the list of patients -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/idFabProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/add_product"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/orange" />
 
     <ListView
         android:id="@+id/listViewProducts"

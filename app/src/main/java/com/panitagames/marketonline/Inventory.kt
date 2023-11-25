@@ -29,9 +29,9 @@ class Inventory : AppCompatActivity() {
 
         // Create a sample list of patients (you should replace this with your data source)
         productsOnStock = mutableListOf(
-            Product("Cafe", "bebida", "tarro 100g", 1, 0),
-            Product("Pan", "comida", "2 hallullas", 2, 0),
-            Product("Arroz", "comida", "bolsa 500g", 3, 0),
+            Product(1, "bebida", "tarro 100g", "Cafe", 0),
+            Product(2, "comida", "2 hallullas", "Pan", 0),
+            Product(3, "comida", "bolsa 500g", "Arroz", 0),
             // Add more patients as needed
         )
 
