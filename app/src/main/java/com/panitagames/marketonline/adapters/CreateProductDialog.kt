@@ -44,11 +44,11 @@ class CreateProductDialog (
             val buttonAddAndGoBack : Button = findViewById(R.id.buttonAddAndGoBack)
             // Set a click listener for the "Go Back" button to dismiss the dialog
             buttonAddAndGoBack.setOnClickListener {
-
                 //Add user to database
                 db.productDao().insertAll(
                     Product(id,type.text.toString(),description.text.toString(), name.text.toString(),price.toString().toIntOrNull()?: 0)
                 )
+
                 act.refreshFromDatabase()
                 dismiss()
             }
