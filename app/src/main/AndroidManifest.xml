@@ -12,18 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MarketOnline"
         tools:targetApi="31">
+
         <activity
-            android:name=".AppDataBase"
-            android:exported="false" />
-        <activity
-            android:name=".ProductDao"
-            android:exported="false" />
-        <activity
-            android:name="adapters.ProductDetails"
+            android:name=".adapters.ProductDetails"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity
-            android:name="adapters.ProductAdapter"
+            android:name=".adapters.ProductAdapter"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity
@@ -31,10 +26,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".CreateProduct"
             android:exported="false" />
         <activity
             android:name=".User"

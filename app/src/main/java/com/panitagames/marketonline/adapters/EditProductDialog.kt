@@ -1,4 +1,4 @@
-package adapters
+package com.panitagames.marketonline.adapters
 
 import android.app.Dialog
 import android.content.Context
@@ -12,11 +12,11 @@ import com.panitagames.marketonline.ProductList
 import com.panitagames.marketonline.R
 import entities.Product
 
-class CreateProductDialog (
+class EditProductDialog (
 
     context: Context,
-    idProduct : Int,
-    act : ProductList
+    idProductEdit : Int,
+    private var act: ProductList
     ) : Dialog(context) {
 
         private lateinit var type : EditText
@@ -24,12 +24,11 @@ class CreateProductDialog (
         private lateinit var name : EditText
         private lateinit var price : EditText
         private lateinit var db : AppDatabase
-        private var id : Int = idProduct
-        private var act : ProductList = act
+        private var idEdit : Int = idProductEdit
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setContentView(R.layout.activity_product)
+            setContentView(R.layout.activity_product_edit)
 
             type = findViewById(R.id.editTextType)
             description = findViewById(R.id.editTextDescription)
@@ -46,9 +45,9 @@ class CreateProductDialog (
             // Set a click listener for the "Go Back" button to dismiss the dialog
             buttonAddAndGoBack.setOnClickListener {
 
-                //Add user to database
-                db.productDao().insertAll(
-                    Product(id,type.text.toString(),description.text.toString(), name.text.toString(),price.toString().toIntOrNull()?: 0)
+                //Edit product in database
+                db.productDao().updateProduct(
+                    Product(idEdit,type.text.toString(),description.text.toString(), name.text.toString(),price.toString().toIntOrNull()?: 0)
                 )
                 act.refreshFromDatabase()
                 dismiss()

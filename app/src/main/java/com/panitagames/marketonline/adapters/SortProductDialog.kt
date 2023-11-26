@@ -1,4 +1,4 @@
-package adapters
+package com.panitagames.marketonline.adapters
 
 import android.R
 import android.app.AlertDialog

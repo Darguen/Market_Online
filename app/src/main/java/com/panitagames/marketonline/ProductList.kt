@@ -1,9 +1,11 @@
 package com.panitagames.marketonline
 
-import adapters.CreateProductDialog
-import adapters.ProductAdapter
-import adapters.SortProductDialog
+import com.panitagames.marketonline.adapters.CreateProductDialog
+import com.panitagames.marketonline.adapters.EditProductDialog
+import com.panitagames.marketonline.adapters.ProductAdapter
+import com.panitagames.marketonline.adapters.SortProductDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.Menu
@@ -90,6 +92,7 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
 
 
 
+
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -114,7 +117,15 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
                 //if (position != null) {
                 showDeleteConfirmationDialog(position)
                 //}
-                return true
+                true
+            }
+            R.id.edit_product -> {
+                val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+                val position = info.position
+                val list : List<Product> = db.productDao().getAll()
+                val dialog = EditProductDialog(this,position + 1,this)
+                dialog.show()
+                true
             }
 
 

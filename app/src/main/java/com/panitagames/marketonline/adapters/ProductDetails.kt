@@ -1,10 +1,9 @@
-package adapters
+package com.panitagames.marketonline.adapters
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Window
-import android.widget.Button
 import android.widget.TextView
 import com.panitagames.marketonline.R
 import entities.Product
@@ -18,7 +17,7 @@ class ProductDetails(
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_product_details)
 
-        val textViewName = findViewById<TextView>(R.id.textViewName)
+        val textViewName = findViewById<TextView>(R.id.textViewNameC)
         val textViewId = findViewById<TextView>(R.id.textViewId)
         val textViewPrice = findViewById<TextView>(R.id.textViewPrice)
         val textViewDescription = findViewById<TextView>(R.id.textViewDescription)

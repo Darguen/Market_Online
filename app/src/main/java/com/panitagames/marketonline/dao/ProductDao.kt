@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import entities.Product
 
 
@@ -30,10 +31,11 @@ interface ProductDao {
     @Insert
     fun insertAll(products: Product)
 
-    @Insert
-    fun insert(product: Product)
 
     @Delete
     fun delete(product: Product)
-    
+
+    @Update
+    fun updateProduct(product: Product)
+
 }

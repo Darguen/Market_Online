@@ -8,6 +8,7 @@
     <string name="product_list">Products List</string>
 
     <string name="add_product">Add Product</string>
+    <string name="edit_product">Edit Product</string>
     <string name="show_product_details">Show Product Details</string>
     <string name="delete_product">Delete Product</string>
     <string name="sort_product">Sort Product</string>
@@ -16,5 +17,12 @@
     <string name="delete_message">Are you sure you want delete this item?</string>
     <string name="button_delete">Delete</string>
     <string name="button_cancel">Cancel</string>
+
+    <string name="type">Type</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
+    <string name="price">Price</string>
+    <string name="id">Id</string>
+    <string name="product_info">Product Information</string>
 
 </resources>

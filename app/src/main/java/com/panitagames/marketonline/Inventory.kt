@@ -1,7 +1,7 @@
 package com.panitagames.marketonline
 
-import adapters.ProductAdapter
-import adapters.ProductDetails
+import com.panitagames.marketonline.adapters.ProductAdapter
+import com.panitagames.marketonline.adapters.ProductDetails
 import android.content.Intent
 import android.os.Bundle
 import android.view.ContextMenu

@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textViewNameC"
+        android:id="@+id/textViewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/product_info"
@@ -16,7 +16,7 @@
 
 
     <EditText
-        android:id="@+id/editTextTypeC"
+        android:id="@+id/editTextType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,42 +27,42 @@
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <EditText
-        android:id="@+id/editTextDescriptionC"
+        android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="text"
         android:minHeight="48dp"
         android:text="@string/description"
-        android:autofillHints=""
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <EditText
-        android:id="@+id/editTextNameC"
+        android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="text"
         android:minHeight="48dp"
         android:text="@string/name"
-        android:autofillHints=""
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <EditText
-        android:id="@+id/editTextPriceC"
+        android:id="@+id/editTextPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
         android:text="@string/price"
-        android:autofillHints=""
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <Button
         android:id="@+id/buttonAddAndGoBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_product"
+        android:text="@string/edit_product"
         tools:ignore="VisualLintButtonSize" />
 </LinearLayout>

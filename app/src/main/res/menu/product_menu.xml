@@ -21,4 +21,11 @@
         android:layout_height="wrap_content"
         android:title="@string/sort_product"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/edit_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/edit_product"
+        app:showAsAction="never" />
 </menu>

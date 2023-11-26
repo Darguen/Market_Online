@@ -1,4 +1,4 @@
-package adapters
+package com.panitagames.marketonline.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -23,7 +23,7 @@ class ProductAdapter (
         val product = getItem(position)
 
         // Bind patient data to TextViews in the custom layout
-        val nameTextView = listItemView.findViewById<TextView>(R.id.textViewName)
+        val nameTextView = listItemView.findViewById<TextView>(R.id.textViewNameC)
         val idTextView = listItemView.findViewById<TextView>(R.id.textViewId)
         val priceTextView = listItemView.findViewById<TextView>(R.id.textViewPrice)
         val descriptionTextView = listItemView.findViewById<TextView>(R.id.textViewDescription)
