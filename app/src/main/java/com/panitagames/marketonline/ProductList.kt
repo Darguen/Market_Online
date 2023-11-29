@@ -20,6 +20,7 @@ import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.panitagames.marketonline.Database.AppDatabase
 import com.panitagames.marketonline.adapters.DetailAdapter
+import com.panitagames.marketonline.entities.MovementHistory
 import com.panitagames.marketonline.entities.Product
 import com.panitagames.marketonline.entities.ProductWithMovement
 
@@ -166,7 +167,10 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
         builder.setMessage(R.string.delete_message)
         builder.setPositiveButton(R.string.button_delete) { dialog, _ ->
             // Handle the delete action here
+            db.movementDao().insertAll(MovementHistory(0, itemPosition , products.map { it.name }[itemPosition].toString(), "Delete Product"))
             deleteItem(itemPosition)
+
+
         }
         builder.setNegativeButton(R.string.button_cancel) { dialog, _ ->
             dialog.dismiss()

@@ -22,12 +22,6 @@ interface ProductDao {
     @Query("SELECT * FROM Product WHERE id IN (:productIds)")
     fun loadAllByIds(productIds: IntArray): List<Product>
 
-    @Query("SELECT * FROM Product ORDER BY :productNames ASC")
-    fun sortByNames(productNames: List<String?>): List<Product>
-
-    @Query("SELECT * FROM Product ORDER BY :productPrices ASC")
-    fun sortByPrices(productPrices: List<Int>): List<Product>
-
 
     @Query("SELECT * FROM Product ORDER BY product_name ASC")
     fun getAllProductsSortedByName(): List<Product>
