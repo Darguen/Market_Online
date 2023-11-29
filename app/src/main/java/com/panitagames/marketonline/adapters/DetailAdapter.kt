@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.panitagames.marketonline.R
-import entities.Product
+import com.panitagames.marketonline.entities.Product
 
-class ProductAdapter (
+class DetailAdapter(
     context: Context,
     resource: Int,
     products: List<Product>
@@ -17,26 +17,26 @@ class ProductAdapter (
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val listItemView = convertView ?: inflater.inflate(R.layout.activity_product_list, null)
+        val listItemView = convertView ?: inflater.inflate(R.layout.details_list, null)
 
         // Get the patient data at the current position
         val product = getItem(position)
 
         // Bind patient data to TextViews in the custom layout
-        val nameTextView = listItemView.findViewById<TextView>(R.id.textViewNameC)
         val idTextView = listItemView.findViewById<TextView>(R.id.textViewId)
-        val priceTextView = listItemView.findViewById<TextView>(R.id.textViewPrice)
+        val nameTextView = listItemView.findViewById<TextView>(R.id.textViewName)
         val descriptionTextView = listItemView.findViewById<TextView>(R.id.textViewDescription)
         val typeTextView = listItemView.findViewById<TextView>(R.id.textViewType)
+        val priceTextView = listItemView.findViewById<TextView>(R.id.textViewPrice)
+
 
         // Set the patient data in the TextViews
-        nameTextView.text = product?.name
-        idTextView.text = product?.id.toString()
-        priceTextView.text = product?.price.toString()
-        descriptionTextView.text = product?.description
-        typeTextView.text = product?.type
+        idTextView.text = "Id: " + product?.id.toString()
+        nameTextView.text = "Name: " + product?.name
+        descriptionTextView.text = "Description: " + product?.description
+        typeTextView.text = "Type: " + product?.type
+        priceTextView.text = "Price: " + product?.price.toString()
 
         return listItemView
     }
-
 }

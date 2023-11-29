@@ -19,11 +19,11 @@
         android:id="@+id/editTextType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/type"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/type"
-        android:autofillHints=""
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <EditText
@@ -32,9 +32,9 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
+        android:hint="@string/description"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/description"
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <EditText
@@ -43,9 +43,9 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
+        android:hint="@string/name"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/name"
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <EditText
@@ -54,9 +54,9 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
+        android:hint="@string/price"
         android:inputType="number"
         android:minHeight="48dp"
-        android:text="@string/price"
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
     <Button

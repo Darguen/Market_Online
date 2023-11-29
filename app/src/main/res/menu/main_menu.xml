@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/go_inventory"
+        android:id="@+id/go_movements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/inventory"
+        android:title="@string/movement_list"
         app:showAsAction="never" />
     <item
         android:id="@+id/go_product_list"

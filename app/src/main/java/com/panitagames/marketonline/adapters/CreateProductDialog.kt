@@ -10,12 +10,12 @@ import androidx.room.Room
 import com.panitagames.marketonline.Database.AppDatabase
 import com.panitagames.marketonline.ProductList
 import com.panitagames.marketonline.R
-import entities.Product
+import com.panitagames.marketonline.entities.MovementHistory
+import com.panitagames.marketonline.entities.Product
 
 class CreateProductDialog (
 
     context: Context,
-    idProduct : Int,
     private var act: ProductList
     ) : Dialog(context) {
 
@@ -24,7 +24,6 @@ class CreateProductDialog (
         private lateinit var name : EditText
         private lateinit var price : EditText
         private lateinit var db : AppDatabase
-        private var id : Int = idProduct
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -38,16 +37,18 @@ class CreateProductDialog (
             db = Room.databaseBuilder(
                 context,
                 AppDatabase::class.java, "database-name"
-            ).allowMainThreadQueries().build()
-
+            ).allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build()
 
             val buttonAddAndGoBack : Button = findViewById(R.id.buttonAddAndGoBack)
             // Set a click listener for the "Go Back" button to dismiss the dialog
             buttonAddAndGoBack.setOnClickListener {
                 //Add user to database
-                db.productDao().insertAll(
-                    Product(id,type.text.toString(),description.text.toString(), name.text.toString(),price.toString().toIntOrNull()?: 0)
+                val newProductId = db.productDao().insertAll(
+                    Product(0, type.text.toString(),description.text.toString(), name.text.toString(),price.text.toString().toIntOrNull()?: 0)
                 )
+
+                db.movementDao().insertAll(MovementHistory(0, newProductId.toInt(), name.text.toString(), "Add Product"))
 
                 act.refreshFromDatabase()
                 dismiss()

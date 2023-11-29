@@ -1,21 +1,21 @@
 package com.panitagames.marketonline.dao
 
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import com.panitagames.marketonline.entities.MovementHistory
 
-/*@Dao
-interface UserDao {
-    @Query("SELECT * FROM user")
-    fun getAll(): List<Product>
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(productIds: IntArray): List<Product>
+@Dao
+interface MovementInfoDao {
+    @Query("SELECT * FROM MovementHistory")
+    fun getAll(): List<MovementHistory>
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): Product
+    @Query("SELECT * FROM MovementHistory WHERE product_id = :id")
+    fun findByProduct(id: Int): List<MovementHistory>
+
 
     @Insert
-    fun insertAll(vararg products: Product)
+    fun insertAll(vararg movements: MovementHistory)
 
-    @Delete
-    fun delete(product: Product)
-}*/
+}

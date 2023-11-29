@@ -6,6 +6,7 @@
     <!--> Menu-->
     <string name="inventory">Inventory</string>
     <string name="product_list">Products List</string>
+    <string name="movement_list">Movements History</string>
 
     <string name="add_product">Add Product</string>
     <string name="edit_product">Edit Product</string>
@@ -24,5 +25,7 @@
     <string name="price">Price</string>
     <string name="id">Id</string>
     <string name="product_info">Product Information</string>
+    <string name="find_product">Find Product</string>
+
 
 </resources>

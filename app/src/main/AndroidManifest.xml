@@ -13,14 +13,7 @@
         android:theme="@style/Theme.MarketOnline"
         tools:targetApi="31">
 
-        <activity
-            android:name=".adapters.ProductDetails"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
-        <activity
-            android:name=".adapters.ProductAdapter"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
+
         <activity
             android:name=".ProductList"
             android:exported="false" />
@@ -28,10 +21,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".User"
-            android:exported="false" />
-        <activity
-            android:name=".Inventory"
+            android:name=".MovementList"
             android:exported="false" />
         <activity
             android:name=".Splash_Screen"

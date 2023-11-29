@@ -2,17 +2,16 @@ package com.panitagames.marketonline
 
 import com.panitagames.marketonline.adapters.CreateProductDialog
 import com.panitagames.marketonline.adapters.EditProductDialog
-import com.panitagames.marketonline.adapters.ProductAdapter
 import com.panitagames.marketonline.adapters.SortProductDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -20,22 +19,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.panitagames.marketonline.Database.AppDatabase
-import entities.Product
+import com.panitagames.marketonline.adapters.DetailAdapter
+import com.panitagames.marketonline.entities.Product
+import com.panitagames.marketonline.entities.ProductWithMovement
 
 class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
 
     private lateinit var db: AppDatabase
     private lateinit var listViewProducts: ListView
-    private var listOption: Boolean = true
-    private var detailOption: Boolean = false
     private lateinit var products: MutableList<Product>
-    private lateinit var adapterItems: ProductAdapter
     private lateinit var adapter : ArrayAdapter<String>
     private lateinit var adapterListProducts: ArrayAdapter<Product>
-    companion object {
-        const val REQUEST_REGISTER = 1 // You can use any unique code
-        const val REQUEST_EDITER = 2 // You can use any unique code
-    }
+    private lateinit var findProduct: EditText
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +41,13 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
 
         // Initialize UI elements
         listViewProducts = findViewById(R.id.listViewProducts)
+        findProduct = findViewById(R.id.find_product)
 
         db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "database-name"
-        ).allowMainThreadQueries().build()
+        ).allowMainThreadQueries().fallbackToDestructiveMigration()
+            .build()
 
 
         // Create a sample list of patients (you should replace this with your data source)
@@ -62,7 +60,6 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
             // Add more patients as needed
         )
         //val productsList = products.toList()
-        //db.productDao().insertAll(productsList)
 
         // Create an ArrayAdapter to populate the ListView
 //        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, patients.map { it.email })
@@ -71,19 +68,22 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
         products = list.toMutableList()
         listViewProducts.adapter = adapter
 
+
         list.size
 
 
 
         val fab : FloatingActionButton = findViewById(R.id.idFabProduct)
         fab.setOnClickListener{
-            val dialog = CreateProductDialog(this,list.size+1,this)
+            val dialog = CreateProductDialog(this,this)
             dialog.show()
         }
         val dialog = SortProductDialog()
         dialog.setItemDialogListener(this)  // Initialize the listener here
         //dialog.show(supportFragmentManager, "ProductDialog")
         registerForContextMenu(listViewProducts)
+
+
 
         refreshFromDatabase()
 
@@ -113,7 +113,7 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
                 // Show the confirmation dialog when "Delete" is selected
                 val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
                 val position = info.position
-                Toast.makeText(this, "Product:" + position.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Product:$position", Toast.LENGTH_LONG).show()
                 //if (position != null) {
                 showDeleteConfirmationDialog(position)
                 //}
@@ -122,8 +122,7 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
             R.id.edit_product -> {
                 val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
                 val position = info.position
-                val list : List<Product> = db.productDao().getAll()
-                val dialog = EditProductDialog(this,position + 1,this)
+                val dialog = EditProductDialog(this,position,this)
                 dialog.show()
                 true
             }
@@ -138,8 +137,7 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.show_product_list -> {
-                //adapterItems = ProductAdapter(this, android.R.layout.simple_list_item_1, products)
-                adapterListProducts = ArrayAdapter(this, android.R.layout.simple_list_item_1, products)
+                adapterListProducts = DetailAdapter(this, android.R.layout.simple_list_item_1, products)
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Detail Products")
                     .setAdapter(adapterListProducts, null)
@@ -182,18 +180,24 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
         refreshFromDatabase()
     }
 
-    public fun deleteFromDatabase(product : Product) {
+    fun deleteFromDatabase(product : Product) {
         db.productDao().delete(product)
     }
 
-    public fun refreshFromDatabase(){
-        val list : List<Product> = db.productDao().getAll()
-        Toast.makeText(this,"Hi: "+list.size.toString(),Toast.LENGTH_LONG).show()
+    fun refreshFromDatabase() {
+        val list: List<Product> = db.productDao().getAll()
+        val listProductWith: List<ProductWithMovement> = db.productDao().getProductsWithPlayLists()
+        listProductWith.forEach {
+            Log.i("ProductList", "Data product: " + it.product.name)
+            Log.i("ProductList", "Data movements of product: " + it.movements.toString())
+        }
+        Toast.makeText(this, "Hi: " + list.size.toString(), Toast.LENGTH_LONG).show()
         products = list.toMutableList()
-        Toast.makeText(this,"Hi: "+products.size.toString(),Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Hi: " + products.size.toString(), Toast.LENGTH_LONG).show()
         listViewProducts.invalidate()
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, products.map{ it.name })
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, products.map { it.name })
         listViewProducts.adapter = adapter
+
     }
 
 
@@ -215,30 +219,42 @@ class ProductList: AppCompatActivity(), SortProductDialog.ItemDialogListener {
     override fun onItemSelected(item: String) {
         // Handle the selected item
         // For example, display a Toast or perform an action
+        val orderedList = mutableListOf("")
         if(item == "Id") {
-            db.productDao().getAll().sortedBy { it.id }
-            db.productDao().loadAllByIds(products.map { it.id })
+            products = db.productDao().getAll().sortedBy { it.id }.toMutableList()
+            val productId = db.productDao().getAll().sortedBy { it.id }
+            orderedList.add(productId.toString())
+            Log.i("IDS", orderedList.toString())
+            //db.productDao().loadAllByIds(products.map { it.id })
             //products.sortBy { it.id }
 
             refreshFromDatabase()
         }
         if(item == "Name") {
-            db.productDao().sortByNames(products.map { it.name })
+            products = db.productDao().getAll().sortedBy { it.name }.toMutableList()
+            val productName = db.productDao().getAll().sortedBy { it.name }
+            orderedList.add(productName.toString())
+            Log.i("NAMES", orderedList.toString())
+            //orderedList.sortedBy { it.name }
             //products.sortBy { it.name }
             refreshFromDatabase()
         }
         if(item == "Description") {
-            products.sortBy { it.description }
+            val productDescription = db.productDao().getAll().sortedBy { it.description }
+            orderedList.add(productDescription.toString())
+            Log.i("DESCRIPTIONS", orderedList.toString())
             refreshFromDatabase()
         }
         if(item == "Type") {
-            products.sortBy { it.type }
-            Toast.makeText(this,products.toString(),Toast.LENGTH_LONG).show()
+            val productType = db.productDao().getAll().sortedBy { it.type }
+            orderedList.add(productType.toString())
+            Log.i("TYPES", orderedList.toString())
             refreshFromDatabase()
         }
         if(item == "Price") {
-            //products.sortBy { it.price }
-            db.productDao().sortByPrices(products.map { it.price })
+            val productPrice = db.productDao().getAll().sortedBy { it.price }
+            orderedList.add(productPrice.toString())
+            Log.i("PRICE", orderedList.toString())
             refreshFromDatabase()
         }
 
