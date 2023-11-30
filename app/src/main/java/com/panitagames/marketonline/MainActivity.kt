@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(productsList)
                 return true
             }
+            R.id.go_api_test ->{
+                val apiRestActivity = Intent(this, APIRestActivity::class.java)
+                startActivity(apiRestActivity)
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
