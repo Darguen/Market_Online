@@ -27,5 +27,10 @@
     <string name="product_info">Product Information</string>
     <string name="find_product">Find Product</string>
 
+    <!--> API -->
+    <string name="api_error">There is a problem with the resource</string>
+    <string name="api_instruction">Push the button Get Info</string>
+    <string name="btn_getinfo">Get Info</string>
+
 
 </resources>
