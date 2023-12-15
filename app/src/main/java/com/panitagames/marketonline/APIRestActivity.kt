@@ -9,6 +9,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.panitagames.marketonline.background.ApiCallback
 import com.panitagames.marketonline.background.ApiTask
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -17,7 +18,7 @@ class APIRestActivity : AppCompatActivity(), ApiCallback {
     private lateinit var getRequestButton : Button
     private lateinit var adapter : ArrayAdapter<String>
     private lateinit var listData : MutableList<String>
-    private  var URL : String = "https://reqres.in/api/users"
+    private  var URL : String = "https://apis.digital.gob.cl/fl/feriados?limit=5"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,44 +56,33 @@ class APIRestActivity : AppCompatActivity(), ApiCallback {
 
     }
 
-    fun processingData(result: String) : MutableList<String> {
-        var list : MutableList<String> = mutableListOf()
+    fun processingData(result: String): MutableList<String> {
+        val list: MutableList<String> = mutableListOf()
         try {
-            // Parse the JSON string into a JSONObject
-            val jsonObject = JSONObject(result)
+            val jsonArray = JSONArray(result)
 
-            // Access values from the JSON object
-            val page = jsonObject.getInt("page")
-            val perPage = jsonObject.getInt("per_page")
-            val total = jsonObject.getInt("total")
-            val totalPages = jsonObject.getInt("total_pages")
+            for (i in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(i)
 
+                val nombre = jsonObject.getString("nombre")
+                val comentarios = jsonObject.getString("comentarios")
+                val fecha = jsonObject.getString("fecha")
+                val irrenunciable = jsonObject.getString("irrenunciable")
+                val tipo = jsonObject.getString("tipo")
 
+                //list.add("$nombre - $comentarios - $fecha - $irrenunciable - $tipo")
+                list.add("$fecha")
 
-            // Access the "data" array
-            val dataArray = jsonObject.getJSONArray("data")
+                // Access the "leyes" array
+                val leyesArray = jsonObject.getJSONArray("leyes")
+                for (j in 0 until leyesArray.length()) {
+                    val leyObject = leyesArray.getJSONObject(j)
+                    val leyNombre = leyObject.getString("nombre")
+                    val leyUrl = leyObject.getString("url")
 
-            // Iterate through the array and access individual objects
-            for (i in 0 until dataArray.length()) {
-                val dataObject = dataArray.getJSONObject(i)
-                /*
-                val id = dataObject.getInt("id")
-                val email = dataObject.getString("email")
-
-                val lastName = dataObject.getString("last_name")
-                val avatar = dataObject.getString("avatar")
-                */
-                val firstName = dataObject.getString("first_name")
-                Log.i("APIRestActivity",firstName.toString())
-                list.add(firstName)
+                    list.add("    Ley: $leyNombre - URL: $leyUrl")
+                }
             }
-
-            // Access the "support" object
-            /*
-            val supportObject = jsonObject.getJSONObject("support")
-            val supportUrl = supportObject.getString("url")
-            val supportText = supportObject.getString("text")*/
-
         } catch (e: JSONException) {
             e.printStackTrace()
             list.add(getString(R.string.api_error))
