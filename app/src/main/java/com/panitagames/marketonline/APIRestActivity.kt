@@ -70,8 +70,8 @@ class APIRestActivity : AppCompatActivity(), ApiCallback {
                 val irrenunciable = jsonObject.getString("irrenunciable")
                 val tipo = jsonObject.getString("tipo")
 
-                //list.add("$nombre - $comentarios - $fecha - $irrenunciable - $tipo")
-                list.add("$fecha")
+                list.add("$nombre - $comentarios - $fecha - $irrenunciable - $tipo")
+                //list.add("$fecha")
 
                 // Access the "leyes" array
                 val leyesArray = jsonObject.getJSONArray("leyes")
