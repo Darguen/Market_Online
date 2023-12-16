@@ -12,4 +12,6 @@ realizados.
 
 Link repositorio:https://github.com/Darguen/Market_Online
 
-Link: https://drive.google.com/file/d/16dAxVp9E0uU3VcHncNk-43qmMoBbMs35/view?usp=sharing
+Link (video proyecto 2, no aplica para este caso): https://drive.google.com/file/d/16dAxVp9E0uU3VcHncNk-43qmMoBbMs35/view?usp=sharing
+
+Link video API Request: https://drive.google.com/file/d/1zBiYfqTUYugBaOMVnpOcSQiEd107_TGB/view?usp=sharing
